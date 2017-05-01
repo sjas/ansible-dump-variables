@@ -1,0 +1,17 @@
+- hosts: all
+  tasks:
+  - name: get variable on remote host via template file
+    template:
+      src: roles/dump-variables/templates/dump_variables
+      dest: /tmp/ansible_variables
+  - name: get variable file from remote
+    fetch:
+      src: /tmp/ansible_variables
+      dest: "variables-on-{{ inventory_hostname }}"
+  - name: cleanup on remote host
+    file: path=/tmp/ansible_variables state=absent
+  - name: move file on local host
+    local_action:
+      shell mv variables-on-"{{ inventory_hostname }}"/"{{ inventory_hostname }}"/tmp/ansible_variables "{{ inventory_hostname }}"-variables
+  - name: clean up on local host
+    local_action: file path="./variables-on-{{ inventory_hostname }}/" state=absent
