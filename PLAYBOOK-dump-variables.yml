@@ -12,6 +12,6 @@
     file: path=/tmp/ansible_variables state=absent
   - name: move file on local host
     local_action:
-      shell mv variables-on-"{{ inventory_hostname }}"/"{{ inventory_hostname }}"/tmp/ansible_variables "{{ inventory_hostname }}"-variables
+      shell mv variables-on-"{{ inventory_hostname }}"/"{{ inventory_hostname }}"/tmp/ansible_variables "DUMPS/{{ inventory_hostname }}"-variables
   - name: clean up on local host
     local_action: file path="./variables-on-{{ inventory_hostname }}/" state=absent
