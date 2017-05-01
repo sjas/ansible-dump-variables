@@ -8,4 +8,4 @@ Will do this for all files from `inventory/hosts`.
 
 ## result
 
-See the `hostname-variables` file for the dump.
+See the `DUMPS/hostname-variables` files for the dumps.
